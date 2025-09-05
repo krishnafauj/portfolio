@@ -46,7 +46,7 @@ const App = () => {
 
 
   return (
-    <div className="min-h-screen w-screen bg-slate-900 text-white">
+    <div className="   min-h-screen w-screen bg-slate-900 text-white">
       {/* ✅ Navigation */}
       <Navbar />
 

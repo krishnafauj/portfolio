@@ -35,7 +35,7 @@ function Navbar() {
   };
 
   return (
-    <div>
+    <div className="">
       <nav
         className={`fixed top-0 w-full mb-3 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800 z-50 transform transition-transform duration-300 ${
           showNavbar ? "translate-y-0" : "-translate-y-full"
