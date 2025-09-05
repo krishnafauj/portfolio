@@ -61,18 +61,6 @@ const App = () => {
 
       {/* ✅ Contact Section */}
       <Contact />
-
-      {/* ✅ Footer */}
-     
-
-
-
-      {/* ✅ Skills Section */}
-
-
-      {/* ✅ Projects Section */}
-
-
       {/* ✅ Contact Section */}
       <About></About>
       {/* ✅ Footer */}
