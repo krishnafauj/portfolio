@@ -1,11 +1,261 @@
-// App.jsx
-import React from 'react';
-import Navigation from './components/Navigation';
+import React, { useState, useEffect } from 'react';
+import { 
+  Github, 
+  Linkedin, 
+  Mail, 
+  ExternalLink, 
+  Code, 
+  Palette, 
+  Database,
+  Server,
+  Smartphone,
+  Globe,
+  User,
+  Briefcase,
+  Send,
+  ChevronDown,
+  Menu,
+  X
+} from 'lucide-react';
+import Skills from './pages/Skills';
 
 const App = () => {
+  const [activeSection, setActiveSection] = useState('home');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [typedText, setTypedText] = useState('');
+  
+  const fullText = "Full Stack Developer , Devops Engineer";
+  
+  useEffect(() => {
+    let currentIndex = 0;
+    const typingInterval = setInterval(() => {
+      if (currentIndex < fullText.length) {
+        setTypedText(fullText.slice(0, currentIndex + 1));
+        currentIndex++;
+      } else {
+        clearInterval(typingInterval);
+      }
+    }, 100);
+
+    return () => clearInterval(typingInterval);
+  }, []);
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(sectionId);
+      setIsMenuOpen(false);
+    }
+  };
+
+  const skills = [
+    { name: 'JavaScript/TypeScript', level: 95, icon: Code },
+    { name: 'React/Next.js', level: 90, icon: Globe },
+    { name: 'Node.js/Express', level: 85, icon: Server },
+    { name: 'Database Design', level: 80, icon: Database },
+    { name: 'UI/UX Design', level: 75, icon: Palette },
+    { name: 'Mobile Development', level: 70, icon: Smartphone },
+  ];
+
+  const projects = [
+    {
+      title: "E-Commerce Platform",
+      description: "Full-stack e-commerce solution with React, Node.js, and Stripe integration",
+      image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=600",
+      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
+      liveUrl: "#",
+      githubUrl: "#"
+    },
+    {
+      title: "Task Management App",
+      description: "Collaborative project management tool with real-time updates",
+      image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=600",
+      technologies: ["Next.js", "Socket.io", "PostgreSQL", "Tailwind"],
+      liveUrl: "#",
+      githubUrl: "#"
+    },
+    {
+      title: "Analytics Dashboard",
+      description: "Data visualization platform with interactive charts and reports",
+      image: "https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=600",
+      technologies: ["Vue.js", "D3.js", "Python", "Flask"],
+      liveUrl: "#",
+      githubUrl: "#"
+    }
+  ];
+
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
-     <Navigation/>
+    <div className="min-h-screen w-screen bg-slate-900 text-white">
+      {/* ✅ Navigation */}
+      <nav className="fixed  w-full  my-3 mb-3 bg-slate-900/95 backdrop-blur-sm border-b border-slate-800 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center py-4">
+            <div className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">
+              Portfolio
+            </div>
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex space-x-8">
+              {['home', 'about', 'skills', 'projects', 'contact'].map((section) => (
+                <button
+                  key={section}
+                  onClick={() => scrollToSection(section)}
+                  className={`capitalize transition-colors duration-300 hover:text-blue-400 ${
+                    activeSection === section ? 'text-blue-400' : 'text-gray-300'
+                  }`}
+                >
+                  {section}
+                </button>
+              ))}
+            </div>
+
+            {/* Mobile menu button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-slate-800 border-t border-slate-700">
+            <div className="px-4 py-2 space-y-2">
+              {['home', 'about', 'skills', 'projects', 'contact'].map((section) => (
+                <button
+                  key={section}
+                  onClick={() => scrollToSection(section)}
+                  className="block w-full text-left py-2 capitalize hover:text-blue-400 transition-colors"
+                >
+                  {section}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* ✅ Hero Section */}
+      <section id="home" className=" h-screen flex items-center justify-center bg-gradient-to-b from-slate-900 to-slate-800">
+        <div className="text-center px-4">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6">Hi, I'm Krishna Faujdar👋</h1>
+          <h2 className="text-2xl md:text-4xl text-blue-400 h-12 mb-6">{typedText}</h2>
+          <p className="max-w-2xl mx-auto text-gray-400 mb-8">
+            Passionate about building modern web applications, crafting clean UI/UX, and solving real-world problems with code.
+          </p>
+          <div className="flex justify-center space-x-6 mb-8">
+            <a href="#" className="hover:text-blue-400 transition-colors"><Github size={24} /></a>
+            <a href="#" className="hover:text-blue-400 transition-colors"><Linkedin size={24} /></a>
+            <a href="#" className="hover:text-blue-400 transition-colors"><Mail size={24} /></a>
+          </div>
+          <button 
+            onClick={() => scrollToSection('projects')}
+            className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition-colors flex items-center mx-auto"
+          >
+            View My Work <ChevronDown className="ml-2" />
+          </button>
+        </div>
+        
+      </section>
+      <section id="about" className="py-20 px-4 bg-slate-800">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center flex items-center justify-center">
+            <User className="mr-3 text-blue-400" /> About Me
+          </h2>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <img 
+              src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=600" 
+              alt="Profile" 
+              className="rounded-2xl shadow-lg w-full h-auto"
+            />
+            <div>
+              <p className="text-gray-300 mb-6">
+                I'm a full-stack developer with a strong background in web technologies. I love turning complex problems into simple, beautiful, and intuitive solutions.
+              </p>
+              <p className="text-gray-300">
+                My focus is on building responsive, accessible, and performant web applications. I'm always eager to learn new technologies and improve my skills.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ✅ Skills Section */}
+      <Skills/>
+      {/* ✅ Projects Section */}
+      <section id="projects" className="py-20 px-4 bg-slate-800">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center flex items-center justify-center">
+            <Code className="mr-3 text-blue-400" /> Projects
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            {projects.map((project) => (
+              <div key={project.title} className="bg-slate-900 rounded-xl shadow-md overflow-hidden">
+                <img src={project.image} alt={project.title} className="w-full h-48 object-cover" />
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+                  <p className="text-gray-400 mb-4">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map((tech) => (
+                      <span key={tech} className="bg-slate-800 px-3 py-1 rounded-full text-sm">{tech}</span>
+                    ))}
+                  </div>
+                  <div className="flex space-x-4">
+                    <a href={project.liveUrl} className="flex items-center text-blue-400 hover:underline">
+                      <ExternalLink className="mr-1" size={16} /> Live
+                    </a>
+                    <a href={project.githubUrl} className="flex items-center text-gray-400 hover:underline">
+                      <Github className="mr-1" size={16} /> Code
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ✅ Contact Section */}
+      <section id="contact" className="py-20 px-4 bg-slate-900">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold mb-12 text-center flex items-center justify-center">
+            <Send className="mr-3 text-emerald-400" /> Contact
+          </h2>
+          <form className="bg-slate-800 p-8 rounded-xl shadow-md">
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <input type="text" placeholder="Name" className="bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-400" />
+              <input type="email" placeholder="Email" className="bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-400" />
+            </div>
+            <textarea placeholder="Message" rows="5" className="w-full bg-slate-900 border border-slate-700 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-400 mb-6"></textarea>
+            <button className="bg-blue-500 hover:bg-blue-600 px-6 py-3 rounded-lg font-medium transition-colors">
+              Send Message
+            </button>
+          </form>
+        </div>
+      </section>
+
+      {/* ✅ Footer */}
+      <footer className="bg-slate-800 py-6 px-4 text-center text-gray-400 border-t border-slate-700">
+        <p>&copy; {new Date().getFullYear()} Krishna Faujdar. All rights reserved.</p>
+      </footer>
+
+        
+        
+
+      {/* ✅ Skills Section */}
+   
+
+      {/* ✅ Projects Section */}
+     
+
+      {/* ✅ Contact Section */}
+    
+
+      {/* ✅ Footer */}
+     
     </div>
   );
 };
