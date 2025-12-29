@@ -144,19 +144,7 @@ const CV = () => {
               </div>
             </div>
 
-            <div className="text-center pt-6">
-              <a
-                href="#projects"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold"
-              >
-                View Detailed Projects
-                <ExternalLink size={18} />
-              </a>
-            </div>
+           
           </div>
         </div>
       </div>

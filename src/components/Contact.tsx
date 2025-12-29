@@ -6,7 +6,7 @@ const Contact = () => {
     <section id="contact" className="py-20 bg-gradient-to-br from-blue-50 via-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl text-gray-900 mb-4">
             Get In Touch
           </h2>
           <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
@@ -18,7 +18,7 @@ const Contact = () => {
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              <h3 className="text-2xl text-gray-900 mb-6">
                 Contact Information
               </h3>
               <div className="space-y-4">
@@ -30,7 +30,7 @@ const Contact = () => {
                     <Mail className="text-blue-600 group-hover:text-white" size={24} />
                   </div>
                   <div>
-                    <p className="font-semibold">Email</p>
+                    <p className="">Email</p>
                     <p className="text-sm">{personalInfo.email}</p>
                   </div>
                 </a>
@@ -43,7 +43,7 @@ const Contact = () => {
                     <Phone className="text-blue-600 group-hover:text-white" size={24} />
                   </div>
                   <div>
-                    <p className="font-semibold">Phone</p>
+                    <p className="">Phone</p>
                     <p className="text-sm">{personalInfo.phone}</p>
                   </div>
                 </a>
@@ -53,7 +53,7 @@ const Contact = () => {
                     <MapPin className="text-blue-600" size={24} />
                   </div>
                   <div>
-                    <p className="font-semibold">Location</p>
+                    <p className="">Location</p>
                     <p className="text-sm">{personalInfo.location}</p>
                   </div>
                 </div>
@@ -61,7 +61,7 @@ const Contact = () => {
             </div>
 
             <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
+              <h3 className="text-2xl text-gray-900 mb-6">
                 Connect With Me
               </h3>
               <p className="text-gray-600 mb-6">
@@ -78,7 +78,7 @@ const Contact = () => {
                     <Github className="text-gray-800 group-hover:text-white" size={24} />
                   </div>
                   <div>
-                    <p className="font-semibold">GitHub</p>
+                    <p className="">GitHub</p>
                     <p className="text-sm">@krishnafauj</p>
                   </div>
                 </a>
@@ -93,7 +93,7 @@ const Contact = () => {
                     <Linkedin className="text-blue-600 group-hover:text-white" size={24} />
                   </div>
                   <div>
-                    <p className="font-semibold">LinkedIn</p>
+                    <p className="">LinkedIn</p>
                     <p className="text-sm">Krishna Faujdar</p>
                   </div>
                 </a>
@@ -103,7 +103,7 @@ const Contact = () => {
 
           <div className="bg-white rounded-xl p-8 shadow-lg text-center">
             <Send className="text-blue-600 mx-auto mb-4" size={48} />
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">
+            <h3 className="text-2xl text-gray-900 mb-4">
               Ready to Start a Project?
             </h3>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
@@ -111,7 +111,7 @@ const Contact = () => {
             </p>
             <a
               href={`mailto:${personalInfo.email}`}
-              className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl font-semibold"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl "
             >
               <Mail size={20} />
               Send Me an Email

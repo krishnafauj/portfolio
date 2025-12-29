@@ -1,33 +1,45 @@
 import { Github, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
 import { personalInfo } from '../data/portfolio';
-
+import profileImg from '../data/image.jpeg';
+import Projects from './Projects';
 const Hero = () => {
   return (
     <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center">
-          <div className="mb-8">
-            <div className="w-32 h-32 bg-gradient-to-br from-blue-600 to-blue-800 rounded-full mx-auto mb-6 flex items-center justify-center text-white text-5xl font-bold shadow-xl">
-              {personalInfo.name.split(' ').map(n => n[0]).join('')}
+          <div className="mb-8 mt-0">
+            <div className="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden shadow-xl relative ">
+              <img
+                src={profileImg}
+                alt="Profile"
+        
+                className="w-full h-full object-cover scale-150 mt-7"
+              />
             </div>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 mb-4">
-            {personalInfo.name}
+          <h1 className="text-5xl md:text-7xl  text-gray-900 mb-4">
+            Hello, I'm {personalInfo.name}
           </h1>
 
-          <p className="text-2xl md:text-3xl text-blue-600 font-semibold mb-3">
+          {/* <p className="text-2xl md:text-3xl text-blue-600 font-semibold mb-3">
             {personalInfo.title}
           </p>
 
           <p className="text-lg text-gray-600 mb-8">
             {personalInfo.subtitle}
-          </p>
+          </p> */}
 
-          <p className="text-lg text-gray-700 max-w-3xl mx-auto mb-12 leading-relaxed">
-            {personalInfo.bio}
+          <p className="text-lg text-gray-700 max-w-3xl mt-2 mx-auto mb-12 leading-relaxed">
+            <p className="text-lg text-gray-600 max-w-3xl leading-relaxed">
+              Full Stack Developer Intern at Soundverse.ai. <br/>
+              Winner of Luminous Hackathon (2nd/100,000+).<br/> 
+    Specializing in building scalable web applications withreal-time systems.
+  </p>
           </p>
+          
 
+          <Projects />
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             <a
               href={`mailto:${personalInfo.email}`}

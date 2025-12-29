@@ -1,3 +1,8 @@
+// 1. IMPORT THE IMAGE AT THE TOP
+import projectImg from './image.jpeg'; 
+import iconimage1 from './icon1.png';
+import iconimage2 from './icon2.png';
+import iconimage3 from './icon3.png';
 export const personalInfo = {
   name: "Krishna Faujdar",
   title: "Full-Stack Web Developer",
@@ -7,7 +12,7 @@ export const personalInfo = {
   location: "Raichur, Karnataka – 584101",
   linkedin: "https://linkedin.com/in/krishna-faujdar-0a2204279",
   github: "https://github.com/krishnafauj",
-  bio: "Passionate full-stack developer specializing in building scalable web applications. Experienced in modern frameworks, cloud deployment, and real-time systems. Winner of Luminous Hackathon (2nd/100,000+).",
+  bio: "Specializing in building scalable web applications with experience in cloud deployment and real-time systems. Winner of Luminous Hackathon (2nd/100,000+). Full Stack Developer Intern at Soundverse.ai",
   cvPath: "/krishna_faujdar_cv.pdf"
 };
 
@@ -31,15 +36,19 @@ export const education = [
 export const experience = [
   {
     id: 1,
-    title: "Web Developer",
-    company: "Freelance Web Development Projects",
-    period: "Jan 2025 – Present",
-    technologies: ["React.js", "Vite", "Tailwind CSS", "Vercel"],
+    title: "Full Stack Developer Intern",
+    company: "Soundverse.ai",
+    period: "Dec 2025 – Present", 
+    technologies: ["Next.js", "React", "Redux Toolkit", "Tailwind CSS", "TypeScript"],
     achievements: [
-      "Developed and deployed two responsive websites for clients, focusing on brand identity and mobile-first design",
-      "Delivered clean UIs and cross-browser compatibility with React.js and Tailwind CSS",
-      "Hosted on Vercel with continuous deployment and seamless updates"
-    ]
+      "Developed key components for the AI Studio interface, including the real-time Audio Player and DnaBrowser",
+      "Implemented global state management using Redux to handle user sessions and track generation flow efficiently",
+      "Optimized the frontend performance for the 'What's New' carousel and dynamic UI alerts for token usage"
+    ],
+    links: {
+      Website: "https://www.soundverse.ai",
+      linkedin: "#" 
+    }
   },
   {
     id: 2,
@@ -75,6 +84,25 @@ export const experience = [
 
 export const projects = [
   {
+    id: 4, 
+    title: "Linear Optimizer (COMA)",
+    description: "Cross-platform mobile application for solving complex Linear Programming problems with step-by-step visualization.",
+    period: "Oct 2024 – Present", 
+    technologies: ["React Native", "Expo SDK", "TypeScript", "Expo Router", "Fraction.js"],
+    highlights: [
+      "Engineered 'Smart Routing Logic' to automatically detect problem types and switch between Standard Simplex and Two-Phase methods [cite: 67, 68]",
+      "Built an interactive 'Step-by-Step Mode' that visualizes pivot operations and tableau iterations for educational use [cite: 31, 32]",
+      "Implemented robust post-optimality tools including Sensitivity Analysis, Shadow Prices, and RHS ranging [cite: 28, 62]",
+      "Developed a unified cross-platform UI (iOS, Android, Web) using Expo Router and gradient animations [cite: 83, 85]"
+    ],
+    links: {
+      github: "#", // Add your repo link
+      live: "#"    // Add live link if deployed
+    },
+    featured: true,
+    image: iconimage1, 
+  },
+  {
     id: 1,
     title: "SeatSwap Application",
     description: "IRCTC seat-swapping platform used by tens of thousands of passengers monthly",
@@ -82,13 +110,14 @@ export const projects = [
     technologies: ["Node.js", "Kafka", "Multer", "WebSocket", "MongoDB"],
     highlights: [
       "Reduced berth mismatch and ticket cancellations significantly",
-      "Designed efficient real-time matching algorithms with indexed filters, improving seat suggestions by 75%"
+      "Designed efficient real-time matching algorithms with indexed filters, improving seat suggestions"
     ],
     links: {
       live: "#",
       github: "#"
     },
-    featured: true
+    featured: true,
+    image: iconimage2,
   },
   {
     id: 2,
@@ -97,12 +126,14 @@ export const projects = [
     period: "Jul 2024 – Dec 2024",
     technologies: ["Ganache", "Hardhat", "React.js", "Node.js", "MongoDB", "IPFS", "EmailJS"],
     highlights: [
-      "Secured over 10 legal documents on blockchain using smart contracts and IPFS"
+      "Secured multiple  legal documents on blockchain using smart contracts and IPFS"
     ],
     links: {
       github: "#"
     },
-    featured: true
+    featured: true,
+    // 2. USE THE IMPORTED VARIABLE HERE
+    image: iconimage3,
   },
   {
     id: 3,
@@ -117,7 +148,9 @@ export const projects = [
     links: {
       github: "#"
     },
-    featured: false
+    featured: false,
+    // 2. USE THE IMPORTED VARIABLE HERE
+    image: projectImg,
   }
 ];
 
@@ -134,7 +167,7 @@ export const positions = [
     id: 1,
     title: "Coordinator",
     organization: "E-Cell",
-    period: "Oct 2024 – Present",
+    period: "Oct 2024 – Oct 2025",
     description: "Led startup workshops; organized campus-wide entrepreneurship events, and engaged students with industry leaders"
   },
   {

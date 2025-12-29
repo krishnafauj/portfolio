@@ -1,13 +1,19 @@
+import { Link } from 'react-router-dom';
 import { Heart, Github, Linkedin, Mail } from 'lucide-react';
 import { personalInfo } from '../data/portfolio';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
+  // Define links to match App.js routes
+  const links = ['Home', 'About', 'Experience', 'Projects', 'Skills', 'CV', 'Contact'];
+
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
+          
+          {/* Column 1: Info */}
           <div>
             <h3 className="text-2xl font-bold mb-4">{personalInfo.name}</h3>
             <p className="text-gray-400 mb-4">
@@ -18,26 +24,29 @@ const Footer = () => {
             </p>
           </div>
 
+          {/* Column 2: Quick Links (Updated for Router) */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              {['Home', 'About', 'Experience', 'Projects', 'Skills', 'CV', 'Contact'].map((link) => (
-                <li key={link}>
-                  <a
-                    href={`#${link.toLowerCase()}`}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      document.querySelector(`#${link.toLowerCase()}`)?.scrollIntoView({ behavior: 'smooth' });
-                    }}
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    {link}
-                  </a>
-                </li>
-              ))}
+              {links.map((item) => {
+                // Logic: 'Home' -> '/' | 'About' -> '/about'
+                const path = item === 'Home' ? '/' : `/${item.toLowerCase()}`;
+                
+                return (
+                  <li key={item}>
+                    <Link
+                      to={path}
+                      className="text-gray-400 hover:text-white transition-colors"
+                    >
+                      {item}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
+          {/* Column 3: Connect (External Links stay as <a>) */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Connect</h4>
             <div className="flex gap-4 mb-4">
@@ -70,6 +79,7 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Copyright Section */}
         <div className="border-t border-gray-800 pt-8 text-center">
           <p className="text-gray-400 flex items-center justify-center gap-2">
             Made with <Heart size={16} className="text-red-500 fill-red-500" /> by {personalInfo.name}
