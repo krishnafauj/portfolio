@@ -9,7 +9,7 @@ import Skills from './components/Skills';
 import CV from './components/CV';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-
+import ProjectDetail from './components/ProjectFlow';
 // Optional: Create a 404 Component for better UX
 const NotFound = () => <div className="text-center mt-20 text-2xl">404 - Page Not Found</div>;
 
@@ -32,6 +32,7 @@ function App() {
             <Route path="/skills" element={<Skills />} />
             <Route path="/cv" element={<CV />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/project/:id" element={<ProjectDetail />} />
 
             {/* Edge Case: Catch-all for 404 errors */}
             <Route path="*" element={<NotFound />} />

@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Code, Database, Wrench, Layers, Terminal, Cpu, Globe, Server } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { skills } from '../data/portfolio';
