@@ -36,7 +36,7 @@ const ProjectDetail = () => {
             <div>
               <div className="flex items-center gap-3 mb-4">
                 {project.technologies && project.technologies[0] && (
-                  <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold uppercase tracking-wide">
+                  <span className="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs  uppercase tracking-wide">
                     {project.technologies[0]}
                   </span>
                 )}
@@ -46,7 +46,7 @@ const ProjectDetail = () => {
                   </span>
                 )}
               </div>
-              <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-6 leading-tight">
+              <h1 className="text-4xl md:text-5xl  text-gray-900 mb-6 leading-tight">
                 {project.title}
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
@@ -54,12 +54,12 @@ const ProjectDetail = () => {
               </p>
               <div className="flex flex-wrap gap-4">
                 {project.links?.live && (
-                  <a href={project.links.live} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-200">
+                  <a href={project.links.live} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-lg  hover:bg-blue-700 transition-all shadow-lg shadow-blue-200">
                     <ExternalLink size={20} /> Launch Live Demo
                   </a>
                 )}
                 {project.links?.github && (
-                  <a href={project.links.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-6 py-3 bg-white border border-gray-300 text-gray-800 rounded-lg font-bold hover:bg-gray-50 transition-all">
+                  <a href={project.links.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-6 py-3 bg-white border border-gray-300 text-gray-800 rounded-lg  hover:bg-gray-50 transition-all">
                     <Github size={20} /> View Source Code
                   </a>
                 )}
@@ -201,7 +201,7 @@ const ProjectDetail = () => {
       {project.highlights && project.highlights.length > 0 && (
         <section className="py-16 bg-gray-50">
           <div className="max-w-4xl mx-auto px-4">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">Key Technical Highlights</h3>
+            <h3 className="text-2xl  text-gray-900 mb-8 text-center">Key Technical Highlights</h3>
             <div className="grid md:grid-cols-2 gap-6">
               {project.highlights.map((highlight, idx) => (
                 <div key={idx} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-start gap-4">

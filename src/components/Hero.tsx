@@ -12,32 +12,37 @@ const Hero = () => {
               <img
                 src={profileImg}
                 alt="Profile"
-        
+
                 className="w-full h-full object-cover scale-150 mt-7"
               />
             </div>
           </div>
 
-          <h1 className="text-5xl md:text-7xl  text-gray-900 mb-4">
-            Hello, I'm {personalInfo.name}
-          </h1>
+          <div className="w-full px-4 text-center"> {/* Container to handle padding on mobile */}
 
-          {/* <p className="text-2xl md:text-3xl text-blue-600 font-semibold mb-3">
-            {personalInfo.title}
-          </p>
+            {/* 1. HEADING: 
+      - text-4xl: Default (Mobile) 
+      - sm:text-5xl: Small Tablets
+      - md:text-7xl: Desktop 
+  */}
+            <h1 className="text-4xl sm:text-5xl md:text-7xl  text-gray-900 mb-4 transition-all duration-300">
+              Hello, I'm {personalInfo.name}
+            </h1>
 
-          <p className="text-lg text-gray-600 mb-8">
-            {personalInfo.subtitle}
-          </p> */}
+            {/* 2. PARAGRAPH: 
+      - Removed the invalid nested <p> tag.
+      - text-sm: Default (Mobile)
+      - sm:text-base: Small Tablets
+      - md:text-lg: Desktop
+  */}
+            <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed">
+              Full Stack Developer Intern at Soundverse.ai. <br />
+              Winner of Luminous Hackathon (2nd/100,000+).<br />
+              Specializing in building scalable web applications with real-time systems.
+            </p>
 
-          <p className="text-lg text-gray-700 max-w-3xl mt-2 mx-auto mb-12 leading-relaxed">
-            <p className="text-lg text-gray-600 max-w-3xl leading-relaxed">
-              Full Stack Developer Intern at Soundverse.ai. <br/>
-              Winner of Luminous Hackathon (2nd/100,000+).<br/> 
-    Specializing in building scalable web applications withreal-time systems.
-  </p>
-          </p>
-          
+          </div>
+
 
           <Projects />
           <div className="flex flex-wrap justify-center gap-4 mb-12">

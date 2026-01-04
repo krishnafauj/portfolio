@@ -4,12 +4,12 @@ import { projects } from '../data/portfolio';
 
 const Projects = () => {
   return (
-    <section id="projects" className="mt-20 bg-gray-50 py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="mt-5 bg-gray-50 py-16">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         
         {/* Section Title */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-extrabold text-gray-900 mb-4 tracking-tight">Featured Projects</h2>
+          <h2 className="text-4xl  text-gray-900 mb-4 tracking-tight">Featured Projects</h2>
           <div className="w-24 h-1.5 bg-purple-600 mx-auto rounded-full mb-4"></div>
           <p className="text-gray-600 max-w-2xl mx-auto">
              Click on any project to see the detailed architectural flow and case study.
@@ -45,12 +45,12 @@ const Projects = () => {
                 <div className="absolute inset-0 bg-black/70 opacity-0 group-hover/card:opacity-100 transition-all duration-300 flex flex-col items-center justify-center gap-4 backdrop-blur-sm p-4">
                   <div className="flex gap-3 w-full justify-center">
                     {project.links.live && (
-                      <a href={project.links.live} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-bold hover:bg-blue-700 transition-all hover:scale-105">
+                      <a href={project.links.live} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-full text-sm  hover:bg-blue-700 transition-all hover:scale-105">
                         <ExternalLink size={16} /> Live
                       </a>
                     )}
                     {project.links.github && (
-                      <a href={project.links.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-4 py-2 bg-white text-gray-900 rounded-full text-sm font-bold hover:bg-gray-100 transition-all hover:scale-105">
+                      <a href={project.links.github} target="_blank" rel="noreferrer" className="flex items-center gap-2 px-4 py-2 bg-white text-gray-900 rounded-full text-sm  hover:bg-gray-100 transition-all hover:scale-105">
                         <Github size={16} /> Code
                       </a>
                     )}
@@ -64,7 +64,7 @@ const Projects = () => {
               {/* CONTENT SECTION (Clickable) */}
               <Link to={`/project/${project.id}`} className="p-6 flex flex-col flex-grow group/text cursor-pointer">
                 <div className="flex justify-between items-start">
-                    <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover/text:text-purple-700 transition-colors">
+                    <h3 className="text-xl  text-gray-900 mb-2 group-hover/text:text-purple-700 transition-colors">
                         {project.title}
                     </h3>
                     <ArrowRight className="text-gray-300 group-hover/text:text-purple-600 transform group-hover/text:translate-x-1 transition-all" size={20} />
@@ -77,12 +77,12 @@ const Projects = () => {
                 {/* Tags */}
                 <div className="flex flex-wrap gap-2 mt-auto pt-4 border-t border-gray-50">
                   {project.technologies.slice(0, 4).map((tech, index) => (
-                    <span key={index} className="px-2.5 py-1 bg-blue-50 text-blue-700 rounded-md text-xs font-semibold border border-blue-100">
+                    <span key={index} className="px-2.5 py-1 bg-blue-50 text-blue-700 rounded-md text-xs  border border-blue-100">
                       {tech}
                     </span>
                   ))}
                   {project.technologies.length > 4 && (
-                    <span className="px-2.5 py-1 bg-gray-100 text-gray-600 rounded-md text-xs font-semibold border border-gray-200">
+                    <span className="px-2.5 py-1 bg-gray-100 text-gray-600 rounded-md text-xs  border border-gray-200">
                       +{project.technologies.length - 4}
                     </span>
                   )}
