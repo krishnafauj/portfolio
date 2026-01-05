@@ -38,10 +38,18 @@ const Hero = () => {
             <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed">
               Full Stack Developer Intern at Soundverse.ai. <br />
               Winner of Luminous Hackathon (2nd/100,000+).<br />
-              Specializing in building scalable web applications with real-time systems.
             </p>
 
           </div>
+        <div className='flex justify-center'>
+          <img
+  src="https://ghchart.rshah.org/krishnafauj"
+  alt="GitHub contribution graph"
+  style={{ maxWidth: "100%", height: "auto" }}
+/>
+        </div>
+
+
 
 
           <Projects />

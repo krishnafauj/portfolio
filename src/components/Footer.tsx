@@ -6,7 +6,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   // Define links to match App.js routes
-  const links = ['Home', 'About', 'Experience', 'Projects', 'Skills', 'CV', 'Contact'];
+  const links = [ 'About', 'Experience', 'Projects', 'Skills', 'CV', 'Contact'];
 
   return (
     <footer className="bg-gray-900 text-white py-12">
@@ -30,7 +30,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {links.map((item) => {
                 // Logic: 'Home' -> '/' | 'About' -> '/about'
-                const path = item === 'Home' ? '/' : `/${item.toLowerCase()}`;
+                const path = item === 'Projects' ? '/' : `/${item.toLowerCase()}`;
                 
                 return (
                   <li key={item}>

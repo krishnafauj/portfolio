@@ -12,10 +12,14 @@ import Footer from './components/Footer';
 import ProjectDetail from './components/ProjectFlow';
 // Optional: Create a 404 Component for better UX
 const NotFound = () => <div className="text-center mt-20 text-2xl">404 - Page Not Found</div>;
-
+import ScrollToTop from "./components/ScrollToTop";
+import MusicPlayer from './components/MusicPlayer'; // <--- IMPORT THIS
 function App() {
   return (
     <Router>
+      <ScrollToTop />
+      <MusicPlayer />
+
       <div className="min-h-screen bg-white flex flex-col">
         {/* Navigation stays outside Routes so it's visible on every page */}
         <Navigation />

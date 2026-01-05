@@ -24,6 +24,7 @@ const ProjectDetail = () => {
 
   return (
     <main className="min-h-screen bg-white">
+      
 
       {/* --- HERO SECTION --- */}
       <div className="bg-gray-50 border-b border-gray-200 pb-12 pt-24">
