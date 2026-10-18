@@ -18,7 +18,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <MusicPlayer />
+       <MusicPlayer />
 
       <div className="min-h-screen bg-white flex flex-col">
         {/* Navigation stays outside Routes so it's visible on every page */}
@@ -37,6 +37,7 @@ function App() {
             <Route path="/cv" element={<CV />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/project/:id" element={<ProjectDetail />} />
+            
 
             {/* Edge Case: Catch-all for 404 errors */}
             <Route path="*" element={<NotFound />} />

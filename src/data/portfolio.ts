@@ -5,7 +5,13 @@ import { StaticImageData } from 'next/image';
 import iconimage1 from './icon1.png';
 import iconimage2 from './icon2.png';
 import iconimage3 from './icon3.png';
-import iconimage5 from './icon5.png';  
+import iconimage5 from './icon5.png';
+import agentStudyImg from './agentstudy.svg';
+import p7_img1 from './7/image1.png';
+import p7_img2 from './7/image2.png';
+import p7_img3 from './7/image3.png';
+import p7_img4 from './7/image4.png';
+import p7_img5 from './7/image5.png';  
 
 // 2. SPECIFIC PROJECT IMAGES (Folder 4)
 import p4_img1 from './4/image1.jpeg';
@@ -56,14 +62,14 @@ export interface Project {
 }
 export const personalInfo = {
   name: "Krishna Faujdar",
-  title: "Full-Stack Web Developer",
-  subtitle: "Scalable Backend · Modern Frontend · Docker",
+  title: "Full Stack Developer",
+  subtitle: "React · Next.js · TypeScript · Node.js",
   email: "krishnafauj@gmail.com",
   phone: "+91 8619064840",
-  location: "Raichur, Karnataka – 584101",
+  location: "Kolkata, West Bengal",
   linkedin: "https://linkedin.com/in/krishna-faujdar-0a2204279",
   github: "https://github.com/krishnafauj",
-  bio: "Specializing in building scalable web applications with experience in cloud deployment and real-time systems. Winner of Luminous Hackathon (2nd/100,000+). Full Stack Developer Intern at Soundverse.ai",
+  bio: "Full Stack Developer at Rezolve.ai, building an AI-powered recruiting platform across React, Next.js, TypeScript and Node.js. Previously interned at Qtanea Solutions and Soundverse.ai. President of the Student Council at IIIT Raichur and runner-up (2nd/100,000+) at the Luminous Hackathon.",
   cvPath: "/krishna_faujdar_cv.pdf"
 };
 
@@ -86,10 +92,38 @@ export const education = [
 
 export const experience = [
   {
+    id: 5,
+    title: "Full Stack Developer",
+    company: "Rezolve.ai · Kolkata",
+    period: "Apr 2026 – Present",
+    technologies: ["Django", "Python", "Node.js", "TypeScript", "AWS SES", "RBAC", "REST APIs", "React", "Next.js"],
+    achievements: [
+      "Own features end-to-end on an AI-powered recruiting platform, from shaping the product idea to designing the backend logic, APIs and data flow",
+      "Built scalable email services on AWS SES for high-volume, templated transactional emails",
+      "Implemented role-based access control (RBAC) to manage user roles and permissions across the platform",
+      "Build the matching frontend in React and Next.js and integrate the product with third-party platforms"
+    ],
+    links: {
+      Website: "https://www.rezolve.ai"
+    }
+  },
+  {
+    id: 4,
+    title: "Software Developer Intern",
+    company: "Qtanea Solutions",
+    period: "Feb 2026 – Mar 2026",
+    technologies: [] as string[],
+    achievements: [
+      "Took ownership of a central-authority platform for colleges and universities, giving one governing body oversight of every institution from a single website",
+      "Designed and built role-based admin panels for different roles (central authority, university and college admins), each managing only its own scope"
+    ],
+    links: {}
+  },
+  {
     id: 1,
     title: "Full Stack Developer Intern",
     company: "Soundverse.ai",
-    period: "Dec 2025 – Present", 
+    period: "Dec 2025 – Jan 2026", 
     technologies: ["Next.js", "React", "Redux Toolkit", "Tailwind CSS", "TypeScript"],
     achievements: [
       "Developed key components for the AI Studio interface, including the real-time Audio Player and DnaBrowser",
@@ -134,6 +168,56 @@ export const experience = [
 ];
 export const projects: Project[] = [
   {
+    id: 6,
+    title: "AgentStudy",
+    description: "AI study platform where a teacher assigns a PDF and each student chats with it privately, without ever getting access to the original, often confidential, document.",
+    period: "2026 – Present",
+    technologies: ["Next.js", "Node.js", "Express", "LangChain", "LangGraph", "MongoDB", "AWS S3", "Redux Toolkit", "React Query", "MCP"],
+    highlights: [
+      "Teachers assign PDFs; students get a personal AI chat grounded in the document but never see or download the source",
+      "Fine-grained access control: unlock content chapter by chapter or page by page, per student or for the whole class",
+      "In progress: AI interview-style sessions where the agent questions students on the material"
+    ],
+    links: {
+      live: "https://studyagent.krishnafauj.in",
+      github: "https://github.com/krishnafauj/Study_Agent"
+    },
+    featured: true,
+    image: agentStudyImg,
+    flow: [
+      { step: 1, title: "Teacher Uploads PDF", desc: "Document is stored privately on S3 and parsed into searchable chunks.", badge: "Ingestion", image: agentStudyImg },
+      { step: 2, title: "Scoped Access", desc: "Teacher decides which chapters or pages each student can use.", badge: "Access Control", image: agentStudyImg },
+      { step: 3, title: "Private Chat", desc: "Each student chats with an agent that answers only from the content they are allowed to see.", badge: "LangGraph", image: agentStudyImg },
+      { step: 4, title: "No Raw Access", desc: "Students get explanations, never the original file, keeping confidential material safe.", badge: "Privacy", image: agentStudyImg },
+      { step: 5, title: "AI Interview (WIP)", desc: "Agent runs viva-style sessions so students can answer questions on the material.", badge: "In Progress", image: agentStudyImg }
+    ]
+  },
+  {
+    id: 7,
+    title: "COSA Portal – IIIT Raichur",
+    description: "Jira-style issue and grievance tracker for IIIT Raichur, routing student issues to the right club, committee or COSA office bearer.",
+    period: "2026 – Present",
+    technologies: ["Django", "Python", "PostgreSQL", "AWS S3", "Neon", "Vercel"],
+    highlights: [
+      "Google sign-in restricted to IIITR emails; students raise issues with category, priority, attachments and tagged COSA members who get notified",
+      "Jira-style Issue Board (Not Started, Under Process, Blocked, Completed) with Escalated and Overdue (5+ days) filters, plus a sortable table view",
+      "Issues are assigned to office bearers, other students can join an existing issue publicly or privately, and every status change is kept in an audit history"
+    ],
+    links: {
+      live: "https://cosaiiitr.krishnafauj.in/board",
+      github: "https://github.com/krishnafauj/cosa"
+    },
+    featured: true,
+    image: p7_img2,
+    flow: [
+      { step: 1, title: "Sign In", desc: "Students sign in with Google using their IIITR email.", badge: "Auth", image: p7_img1 },
+      { step: 2, title: "Raise an Issue", desc: "Title, description, category, priority, attachments and tagged COSA members, who get notified.", badge: "Intake", image: p7_img5 },
+      { step: 3, title: "Issue Board", desc: "Kanban board across Not Started, Under Process, Blocked and Completed, with escalated and overdue filters.", badge: "Workflow", image: p7_img2 },
+      { step: 4, title: "Table View", desc: "Every issue with status, priority, assignee, tags and latest updates in one sortable table.", badge: "Tracking", image: p7_img4 },
+      { step: 5, title: "Issue Detail & History", desc: "Assignment, students on the issue, remarks and a full audit trail of status changes.", badge: "Audit", image: p7_img3 }
+    ]
+  },
+  {
     id: 4, 
     title: "Linear Optimizer (COMA)",
     description: "Cross-platform mobile application for solving complex Linear Programming problems with step-by-step visualization.",
@@ -168,7 +252,7 @@ export const projects: Project[] = [
     technologies: ["Node.js", "Kafka", "Multer", "WebSocket", "MongoDB"],
     highlights: ["Reduced berth mismatch", "Real-time matching algorithms"],
     links: {
-      live: "https://trainticketswap.vercel.app/",
+      live: "https://seatswap.krishnafauj.in",
       github: "https://github.com/krishnafauj/trainticketswap "
     },
     featured: true,
@@ -258,6 +342,13 @@ export const skills = {
 };
 
 export const positions = [
+  {
+    id: 3,
+    title: "President",
+    organization: "Student Council (Gymkhana), IIIT Raichur",
+    period: "Sep 2026 – Present",
+    description: "Lead the student body, representing students to the administration and overseeing campus clubs, fests and student initiatives"
+  },
   {
     id: 1,
     title: "Coordinator",

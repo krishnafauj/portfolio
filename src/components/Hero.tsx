@@ -1,5 +1,6 @@
 import { Github, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
-import { personalInfo } from '../data/portfolio';
+import { Link } from 'react-router-dom';
+import { personalInfo, experience } from '../data/portfolio';
 import profileImg from '../data/image.jpeg';
 import Projects from './Projects';
 const Hero = () => {
@@ -7,50 +8,47 @@ const Hero = () => {
     <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-gray-50 pt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center">
-          <div className="mb-8 mt-0">
-            <div className="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden shadow-xl relative ">
-              <img
-                src={profileImg}
-                alt="Profile"
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center mb-16 text-center lg:text-left">
 
-                className="w-full h-full object-cover scale-150 mt-7"
-              />
+            {/* LEFT: Photo + intro */}
+            <div className="lg:col-span-3 flex flex-col items-center text-center">
+              <div className="w-40 h-40 sm:w-48 sm:h-48 rounded-full mb-8 overflow-hidden shadow-xl ring-4 ring-white">
+                <img
+                  src={profileImg}
+                  alt={personalInfo.name}
+                  className="w-full h-full object-cover scale-[1.08] translate-y-[8%]"
+                />
+              </div>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl text-gray-900 mb-4">
+                Hello, I'm {personalInfo.name}
+              </h1>
+              <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-xl mx-auto leading-relaxed">
+                Full Stack Developer at Rezolve.ai, Kolkata. <br />
+                President, Student Council – IIIT Raichur.<br />
+                Runner-up, Luminous Hackathon (2nd/100,000+).
+              </p>
+            </div>
+
+            {/* RIGHT: Compact career timeline */}
+            <div className="lg:col-span-2 w-full max-w-md mx-auto text-left">
+              <p className="text-xs font-semibold uppercase tracking-wider text-gray-400 mb-4">Journey</p>
+              <ol className="relative border-l-2 border-blue-100 ml-2">
+                {experience.map((exp, i) => (
+                  <li key={exp.id} className="ml-5 mb-4 last:mb-0">
+                    <span className={`absolute -left-[7px] mt-1.5 w-3 h-3 rounded-full border-2 border-white ${i === 0 ? 'bg-blue-600 ring-4 ring-blue-100' : 'bg-blue-300'}`} />
+                    <Link
+                      to="/experience"
+                      className="block rounded-lg px-3 py-2 -ml-3 hover:bg-white hover:shadow-sm transition-all group"
+                    >
+                      <p className="text-xs text-gray-400">{exp.period}</p>
+                      <p className="text-sm font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">{exp.title}</p>
+                      <p className="text-sm text-gray-500">{exp.company}</p>
+                    </Link>
+                  </li>
+                ))}
+              </ol>
             </div>
           </div>
-
-          <div className="w-full px-4 text-center"> {/* Container to handle padding on mobile */}
-
-            {/* 1. HEADING: 
-      - text-4xl: Default (Mobile) 
-      - sm:text-5xl: Small Tablets
-      - md:text-7xl: Desktop 
-  */}
-            <h1 className="text-4xl sm:text-5xl md:text-7xl  text-gray-900 mb-4 transition-all duration-300">
-              Hello, I'm {personalInfo.name}
-            </h1>
-
-            {/* 2. PARAGRAPH: 
-      - Removed the invalid nested <p> tag.
-      - text-sm: Default (Mobile)
-      - sm:text-base: Small Tablets
-      - md:text-lg: Desktop
-  */}
-            <p className="text-sm sm:text-base md:text-lg text-gray-600 max-w-3xl mx-auto mb-12 leading-relaxed">
-              Full Stack Developer Intern at Soundverse.ai. <br />
-              Winner of Luminous Hackathon (2nd/100,000+).<br />
-            </p>
-
-          </div>
-        <div className='flex justify-center'>
-          <img
-  src="https://ghchart.rshah.org/krishnafauj"
-  alt="GitHub contribution graph"
-  style={{ maxWidth: "100%", height: "auto" }}
-/>
-        </div>
-
-
-
 
           <Projects />
           <div className="flex flex-wrap justify-center gap-4 mb-12">

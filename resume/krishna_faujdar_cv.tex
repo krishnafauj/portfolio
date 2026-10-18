@@ -1,0 +1,140 @@
+%-------------------------------------------------------------
+% Krishna Faujdar - Resume (ATS-friendly, Overleaf compatible)
+% Compile with pdflatex
+%-------------------------------------------------------------
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{charter}
+\usepackage[a4paper,left=0.55in,right=0.55in,top=0.4in,bottom=0.35in]{geometry}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[hidelinks]{hyperref}
+\pdfgentounicode=1
+
+\definecolor{accent}{HTML}{1D3A8A}
+\definecolor{muted}{HTML}{555555}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\tabcolsep}{0pt}
+\urlstyle{same}
+\raggedright
+
+% Section style
+\titleformat{\section}{\color{accent}\scshape\large\bfseries}{}{0em}{}[\vspace{-6pt}\color{accent}\rule{\linewidth}{0.6pt}\vspace{-4pt}]
+\titlespacing*{\section}{0pt}{5pt}{4pt}
+
+% Helpers
+\newcommand{\entry}[4]{%
+  \begin{tabularx}{\linewidth}{@{}X r@{}}
+    \textbf{#1} & \textbf{#2} \\
+    \textit{\small #3} & \textit{\small\color{muted} #4} \\
+  \end{tabularx}\vspace{-3pt}}
+\newcommand{\project}[3]{%
+  \begin{tabularx}{\linewidth}{@{}X r@{}}
+    \textbf{#1} {\small\color{muted}| \textit{#2}} & \small #3 \\
+  \end{tabularx}\vspace{-3pt}}
+\newenvironment{points}{\begin{itemize}[leftmargin=12pt,itemsep=0.5pt,topsep=2pt,parsep=0pt,label={\small\textbullet}]\small}{\end{itemize}\vspace{2pt}}
+
+\begin{document}
+
+%----------------- HEADER -----------------
+\begin{center}
+  {\Huge\bfseries Krishna Faujdar}\\[3pt]
+  {\small\color{muted} Full Stack Developer \textbullet\ Kolkata, India}\\[3pt]
+  \small
+  \href{tel:+918619064840}{+91 86190 64840} \;|\;
+  \href{mailto:krishnafauj@gmail.com}{krishnafauj@gmail.com} \;|\;
+  \href{https://krishnafauj.in}{krishnafauj.in} \;|\;
+  \href{https://linkedin.com/in/krishna-faujdar-0a2204279}{LinkedIn} \;|\;
+  \href{https://github.com/krishnafauj}{GitHub}
+\end{center}
+\vspace{-4pt}
+
+%----------------- SUMMARY -----------------
+\section{Summary}
+\small Full stack engineer at Rezolve.ai who owns features from idea to production: shaping the product, designing Django APIs and data models, building the React/Next.js interface, and shipping with RBAC, AWS SES email and integrations in place. Builds AI products with LangChain/LangGraph. Student Council President, IIIT Raichur; Luminous Hackathon runner-up (2nd of 100,000+).
+
+%----------------- EDUCATION -----------------
+\section{Education}
+\entry{Indian Institute of Information Technology, Raichur}{Aug 2023 -- May 2027}{B.Tech, Computer Science and Engineering}{Raichur, Karnataka}
+
+%----------------- EXPERIENCE -----------------
+\section{Experience}
+\entry{Rezolve.ai}{Apr 2026 -- Present}{Full Stack \& Backend Developer (Full-time)}{Kolkata, India}
+\begin{points}
+  \item Own features end-to-end on an AI-powered recruiting platform, from shaping the product idea to backend logic, APIs and data flow.
+  \item Built scalable email services on \textbf{AWS SES} for high-volume, templated transactional email.
+  \item Implemented \textbf{role-based access control (RBAC)} to manage user roles and permissions across the platform.
+  \item Build the matching \textbf{React / Next.js / TypeScript} frontend and integrate the product with third-party platforms.
+\end{points}
+
+\entry{Qtanea Solutions}{Feb 2026 -- Mar 2026}{Software Developer Intern}{}
+\begin{points}
+  \item Owned a \textbf{central-authority platform} for colleges and universities, letting one governing body oversee every institution.
+  \item Built \textbf{role-based admin panels} for central-authority, university and college admins, each scoped to its own data.
+\end{points}
+
+\entry{Soundverse.ai}{Dec 2025 -- Jan 2026}{Full Stack Developer Intern}{}
+\begin{points}
+  \item Built core pieces of the AI Studio interface, including the real-time \textbf{Audio Player} and \textbf{DnaBrowser}, in Next.js and TypeScript.
+  \item Implemented global state with \textbf{Redux Toolkit} for user sessions and generation-flow tracking.
+  \item Optimised the ``What's New'' carousel and dynamic token-usage alerts for faster, smoother UI.
+\end{points}
+
+%----------------- PROJECTS -----------------
+\section{Projects}
+\project{AgentStudy}{Next.js, Node.js, Express, LangGraph, MongoDB, AWS S3}{\href{https://studyagent.krishnafauj.in}{Live} $\cdot$ \href{https://github.com/krishnafauj/Study_Agent}{GitHub}}
+\begin{points}
+  \item AI study platform: a teacher assigns a PDF and each student chats with it privately, \textbf{without ever accessing the original (often confidential) document}.
+  \item Scoped access control unlocks content chapter-by-chapter or page-by-page, per student or for the whole class.
+  \item In progress: AI interview-style viva sessions where the agent questions students on the material.
+\end{points}
+
+\project{COSA Portal -- IIIT Raichur}{Django, PostgreSQL (Neon), AWS S3, Vercel}{\href{https://cosaiiitr.krishnafauj.in/board}{Live} $\cdot$ \href{https://github.com/krishnafauj/cosa}{GitHub}}
+\begin{points}
+  \item Jira-style grievance and issue tracker for the whole campus; Google sign-in restricted to institute emails.
+  \item Kanban board (Not Started / Under Process / Blocked / Completed) with escalation and overdue filters, plus table view.
+  \item Assignment to office bearers, tagged-member notifications, students joining existing issues, and a full audit history.
+\end{points}
+
+\project{SeatSwap}{Node.js, Kafka, WebSocket, MongoDB}{\href{https://seatswap.krishnafauj.in}{Live} $\cdot$ \href{https://github.com/krishnafauj/trainticketswap}{GitHub}}
+\begin{points}
+  \item IRCTC seat-swapping platform used by tens of thousands of passengers monthly; reduced berth mismatch and cancellations.
+  \item Real-time matching with indexed MongoDB filters and Kafka-batched requests; WebSocket channel to negotiate swaps.
+\end{points}
+
+\project{Linear Optimizer (COMA)}{React Native, Expo, TypeScript}{\href{https://drive.google.com/file/d/1eD4n0h7U7JK-hQd-oGtwjvY_i8ieaOlX/view}{App} $\cdot$ \href{https://github.com/krishnafauj/coma_project}{GitHub}}
+\begin{points}
+  \item Mobile app that solves Linear Programming problems, auto-detecting the problem type and visualising each simplex step.
+\end{points}
+
+\project{Bosch Power Tools Chatbot}{Flask, LangChain, Sentence-Transformers}{May 2024 -- Mar 2025}
+\begin{points}
+  \item LangChain chatbot backend; +30\% response accuracy and 40\% faster responses via optimised vector retrieval.
+\end{points}
+
+%----------------- SKILLS -----------------
+\section{Technical Skills}
+\small
+\begin{tabularx}{\linewidth}{@{}l X@{}}
+  \textbf{Languages:}\enspace & Python, JavaScript, TypeScript, C++, C, SQL \\
+  \textbf{Backend:}\enspace & Django, Node.js, Express, REST APIs, Kafka, WebSockets, RBAC \\
+  \textbf{Frontend:}\enspace & React, Next.js, Redux Toolkit, React Query, Tailwind CSS, React Native \\
+  \textbf{AI / LLM:}\enspace & LangChain, LangGraph, RAG, MCP, OpenAI / Groq APIs \\
+  \textbf{Data \& Cloud:}\enspace & PostgreSQL, MongoDB, MySQL, AWS (SES, S3), Docker, Vercel, Render, Git \\
+\end{tabularx}
+
+%----------------- LEADERSHIP & ACHIEVEMENTS -----------------
+\section{Leadership \& Achievements}
+\begin{points}
+  \item \textbf{President, Student Council (Gymkhana), IIIT Raichur} (Sep 2026 -- Present): lead the student body and built the COSA Portal for campus grievances.
+  \item \textbf{Runner-up, Luminous Hackathon} (2nd of 100,000+): real-time solar analytics dashboards with Grafana, PostgreSQL (Neon) and React.
+  \item \textbf{Coordinator, E-Cell} (Oct 2024 -- Oct 2025): ran startup workshops and campus-wide entrepreneurship events.
+\end{points}
+
+\end{document}

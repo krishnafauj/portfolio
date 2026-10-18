@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Play, Pause, SkipForward, SkipBack, Music, X, GripVertical } from 'lucide-react';
 
-// IMPORTANT: Ensure these paths are correct in your project
+// IMPORTANT: Ensure you have a declaration file (e.g., global.d.ts) 
+// if TypeScript complains about importing .mp3 or .png files.
 import song1 from '../assets/songs/song1.mp3'; 
 import song2 from '../assets/songs/song2.mp3';
 import song3 from '../assets/songs/song3.mp3';
@@ -10,29 +11,42 @@ import image1 from '../assets/images/image1.png';
 import image2 from '../assets/images/image2.png';
 import image3 from '../assets/images/image3.png';
 
-const playlist = [
+// 1. Define Interfaces for data shapes
+interface Song {
+  title: string;
+  artist: string;
+  src: string;
+  img: string;
+}
+
+interface Position {
+  x: number;
+  y: number;
+}
+
+const playlist: Song[] = [
   { title: "Destiny", artist: "Unknown", src: song1, img: image1 },
   { title: "Choo lo", artist: "Local Train", src: song2, img: image2 },
   { title: "River Flows in You", artist: "Yiruma", src: song3, img: image3 },
 ];
 
-const MusicPlayer = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [position, setPosition] = useState({ x: 20, y: 100 }); 
-  const [isDragging, setIsDragging] = useState(false);
+const MusicPlayer: React.FC = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
+  const [position, setPosition] = useState<Position>({ x: 20, y: 100 }); 
+  const [isDragging, setIsDragging] = useState<boolean>(false);
   
-  // Refs
-  const dragStartRef = useRef({ x: 0, y: 0 });
-  const wrapperRef = useRef(null);
-  const audioRef = useRef(null);
+  // 2. Type the Refs (HTML elements often start as null)
+  const dragStartRef = useRef<Position>({ x: 0, y: 0 });
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   // Audio State
-  const [currentSongIndex, setCurrentSongIndex] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
+  const [currentSongIndex, setCurrentSongIndex] = useState<number>(0);
+  const [currentTime, setCurrentTime] = useState<number>(0);
+  const [duration, setDuration] = useState<number>(0);
 
-  // --- BOUNDARY CHECK (Fixes the "Merged inside screen" issue) ---
+  // --- BOUNDARY CHECK ---
   const adjustPositionWithinBounds = () => {
     if (!wrapperRef.current) return;
 
@@ -43,15 +57,12 @@ const MusicPlayer = () => {
       let newX = prev.x;
       let newY = prev.y;
 
-      // Check Right Edge: Ensure it doesn't go off screen
       if (newX + offsetWidth > innerWidth) {
         newX = innerWidth - offsetWidth - 10; 
       }
-      // Check Bottom Edge
       if (newY + offsetHeight > innerHeight) {
         newY = innerHeight - offsetHeight - 10;
       }
-      // Check Left/Top Edge
       if (newX < 0) newX = 10;
       if (newY < 0) newY = 10;
 
@@ -59,7 +70,6 @@ const MusicPlayer = () => {
     });
   };
 
-  // Run boundary check whenever it opens or window resizes
   useEffect(() => {
     adjustPositionWithinBounds();
     window.addEventListener('resize', adjustPositionWithinBounds);
@@ -68,12 +78,14 @@ const MusicPlayer = () => {
 
   // --- CLICK OUTSIDE LOGIC ---
   useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       if (!isOpen) return;
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+      // "as Node" assertion helps TS understand the event target is a DOM node
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
         setIsOpen(false);
       }
     };
+    
     document.addEventListener("mousedown", handleClickOutside);
     document.addEventListener("touchstart", handleClickOutside);
     return () => {
@@ -83,11 +95,21 @@ const MusicPlayer = () => {
   }, [isOpen]);
 
   // --- DRAG HANDLERS ---
-  const handleDragStart = (e) => {
+  
+  // 3. Handling Union Types for Events (Mouse or Touch)
+  const handleDragStart = (e: React.MouseEvent | React.TouchEvent) => {
     setIsDragging(true);
     
-    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    let clientX: number;
+    let clientY: number;
+
+    if ('touches' in e) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+    } else {
+        clientX = (e as React.MouseEvent).clientX;
+        clientY = (e as React.MouseEvent).clientY;
+    }
 
     dragStartRef.current = { 
       x: clientX - position.x, 
@@ -96,12 +118,24 @@ const MusicPlayer = () => {
   };
 
   useEffect(() => {
-    const handleMove = (e) => {
+    // 4. Native DOM Event Listeners need specific typing
+    const handleMove = (e: MouseEvent | TouchEvent) => {
       if (!isDragging || !wrapperRef.current) return;
-      if (e.preventDefault) e.preventDefault(); 
+      
+      // cancelable check is good practice for touch events
+      if (e.cancelable && e.preventDefault) e.preventDefault(); 
 
-      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+      let clientX: number;
+      let clientY: number;
+
+      // Type narrowing to distinguish Mouse vs Touch
+      if (window.TouchEvent && e instanceof TouchEvent) {
+         clientX = e.touches[0].clientX;
+         clientY = e.touches[0].clientY;
+      } else {
+         clientX = (e as MouseEvent).clientX;
+         clientY = (e as MouseEvent).clientY;
+      }
 
       const newX = clientX - dragStartRef.current.x;
       const newY = clientY - dragStartRef.current.y;
@@ -122,6 +156,7 @@ const MusicPlayer = () => {
     if (isDragging) {
       window.addEventListener('mousemove', handleMove);
       window.addEventListener('mouseup', handleEnd);
+      // 'passive: false' is crucial for preventing scrolling while dragging
       window.addEventListener('touchmove', handleMove, { passive: false });
       window.addEventListener('touchend', handleEnd);
     }
@@ -136,8 +171,13 @@ const MusicPlayer = () => {
 
   // --- AUDIO LOGIC ---
   const togglePlay = () => {
-    if (isPlaying) audioRef.current.pause();
-    else audioRef.current.play();
+    if (!audioRef.current) return;
+    
+    if (isPlaying) {
+        audioRef.current.pause();
+    } else {
+        audioRef.current.play();
+    }
     setIsPlaying(!isPlaying);
   };
 
@@ -153,11 +193,11 @@ const MusicPlayer = () => {
 
   useEffect(() => {
     if (isPlaying && audioRef.current) {
-        audioRef.current.play().catch(e => console.log(e));
+        audioRef.current.play().catch(e => console.log("Playback error:", e));
     }
-  }, [currentSongIndex]);
+  }, [currentSongIndex, isPlaying]); // Added isPlaying dependency for safety
 
-  const formatTime = (time) => {
+  const formatTime = (time: number): string => {
     if (isNaN(time)) return "0:00";
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
@@ -170,7 +210,6 @@ const MusicPlayer = () => {
     <div 
       ref={wrapperRef}
       className="fixed z-50 flex items-start select-none"
-      // Added max-width and dynamic positioning check in useEffect
       style={{ 
         left: `${position.x}px`, 
         top: `${position.y}px`, 
@@ -181,8 +220,8 @@ const MusicPlayer = () => {
       <audio 
         ref={audioRef} 
         src={playlist[currentSongIndex].src} 
-        onTimeUpdate={() => setCurrentTime(audioRef.current.currentTime)} 
-        onLoadedMetadata={() => setDuration(audioRef.current.duration)} 
+        onTimeUpdate={() => audioRef.current && setCurrentTime(audioRef.current.currentTime)} 
+        onLoadedMetadata={() => audioRef.current && setDuration(audioRef.current.duration)} 
         onEnded={playNext} 
       />
 
@@ -196,11 +235,10 @@ const MusicPlayer = () => {
         <GripVertical size={18} />
       </div>
 
-      {/* CLOSED STATE - RESTORED HOVER EFFECT */}
+      {/* CLOSED STATE */}
       {!isOpen && (
         <button 
           onClick={() => setIsOpen(true)}
-          // 'group' class enables the hover effect on children
           className="bg-blue-600 h-10 text-white px-3 rounded-r-md flex items-center group shadow-md hover:bg-blue-700 transition-all overflow-hidden"
         >
           {isPlaying ? (
@@ -210,7 +248,6 @@ const MusicPlayer = () => {
              </div>
           ) : <Music size={16} />}
           
-          {/* This span width grows from 0 to 200px on hover */}
           <span className="max-w-0 group-hover:max-w-[200px] overflow-hidden transition-all duration-500 ease-in-out whitespace-nowrap text-sm ml-0 group-hover:ml-2">
             Soundtrack your visit
           </span>
@@ -224,7 +261,11 @@ const MusicPlayer = () => {
              {/* Playlist Area */}
              <div className="bg-gray-800/50 p-3 max-h-60 overflow-y-auto border-b border-gray-700 custom-scrollbar">
                 {playlist.map((song, index) => (
-                    <div key={index} onClick={() => { setCurrentSongIndex(index); setIsPlaying(true); }} className={`flex items-center gap-3 p-2 rounded-md cursor-pointer transition-colors ${currentSongIndex === index ? 'bg-blue-600/20 border border-blue-500/30' : 'hover:bg-gray-700'}`}>
+                    <div 
+                        key={index} 
+                        onClick={() => { setCurrentSongIndex(index); setIsPlaying(true); }} 
+                        className={`flex items-center gap-3 p-2 rounded-md cursor-pointer transition-colors ${currentSongIndex === index ? 'bg-blue-600/20 border border-blue-500/30' : 'hover:bg-gray-700'}`}
+                    >
                         <img src={song.img} alt="art" className={`w-8 h-8 rounded object-cover ${currentSongIndex === index ? 'opacity-100' : 'opacity-70'}`} />
                         <div className="flex-1 truncate">
                             <p className={`text-xs truncate ${currentSongIndex === index ? 'text-blue-400 font-bold' : 'text-gray-200'}`}>{song.title}</p>
@@ -251,9 +292,14 @@ const MusicPlayer = () => {
                     <input 
                         type="range" 
                         min="0" 
-                        max={duration} 
+                        max={duration || 0} // Fallback to 0 if NaN
                         value={currentTime} 
-                        onChange={(e) => { audioRef.current.currentTime = e.target.value; setCurrentTime(e.target.value); }} 
+                        onChange={(e) => { 
+                            if(audioRef.current) {
+                                audioRef.current.currentTime = Number(e.target.value); 
+                                setCurrentTime(Number(e.target.value)); 
+                            }
+                        }} 
                         className="w-full h-1 bg-gray-700 rounded-lg appearance-none cursor-pointer mb-1"
                         style={{
                             background: `linear-gradient(to right, #2563eb ${progressPercent}%, #374151 ${progressPercent}%)`
