@@ -69,7 +69,7 @@ export const personalInfo = {
   location: "Kolkata, West Bengal",
   linkedin: "https://linkedin.com/in/krishna-faujdar-0a2204279",
   github: "https://github.com/krishnafauj",
-  bio: "Full Stack Developer at Rezolve.ai, building an AI-powered recruiting platform across React, Next.js, TypeScript and Node.js. Previously interned at Qtanea Solutions and Soundverse.ai. President of the Student Council at IIIT Raichur and runner-up (2nd/100,000+) at the Luminous Hackathon.",
+  bio: "Full Stack Developer at Rezolve.ai building production web applications end-to-end: Django and Node.js APIs, React/Next.js interfaces and access-controlled systems on PostgreSQL, MongoDB and AWS. Builds AI applications with LangChain and LangGraph, and leads the campus as Student Council President at IIIT Raichur.",
   cvPath: "/krishna_faujdar_cv.pdf"
 };
 
@@ -174,8 +174,9 @@ export const projects: Project[] = [
     period: "2026 – Present",
     technologies: ["Next.js", "Node.js", "Express", "LangChain", "LangGraph", "MongoDB", "AWS S3", "Redux Toolkit", "React Query", "MCP"],
     highlights: [
-      "Teachers assign PDFs; students get a personal AI chat grounded in the document but never see or download the source",
-      "Fine-grained access control: unlock content chapter by chapter or page by page, per student or for the whole class",
+      "Access-controlled RAG: teachers assign a PDF and each student chats with it privately, never accessing the original document",
+      "Teachers carve PDFs into page-range sections and grant them per student; scope is derived server-side and retrieval is filtered to approved pages only",
+      "Prerequisite knowledge graph lets an out-of-scope concept cross only as a short definition (depth 1, no LLM call), never the restricted page",
       "In progress: AI interview-style sessions where the agent questions students on the material"
     ],
     links: {
@@ -247,10 +248,10 @@ export const projects: Project[] = [
   {
     id: 1,
     title: "SeatSwap Application",
-    description: "IRCTC seat-swapping platform used by tens of thousands of passengers monthly",
+    description: "Deployed platform that matches train passengers holding complementary berths so they can swap seats instead of cancelling.",
     period: "Jul 2025 – Present",
     technologies: ["Node.js", "Kafka", "Multer", "WebSocket", "MongoDB"],
-    highlights: ["Reduced berth mismatch", "Real-time matching algorithms"],
+    highlights: ["Kafka producers batch swap requests to handle bursts of concurrent users", "Indexed MongoDB queries find complementary seats", "WebSocket channel for live swap negotiation"],
     links: {
       live: "https://seatswap.krishnafauj.in",
       github: "https://github.com/krishnafauj/trainticketswap "

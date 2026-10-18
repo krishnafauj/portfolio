@@ -25,7 +25,7 @@
 \raggedright
 
 % Section style
-\titleformat{\section}{\color{accent}\scshape\large\bfseries}{}{0em}{}[\vspace{-6pt}\color{accent}\rule{\linewidth}{0.6pt}\vspace{-4pt}]
+\titleformat{\section}{\color{accent}\large\bfseries}{}{0em}{\MakeUppercase}[\vspace{-6pt}\color{accent}\rule{\linewidth}{0.6pt}\vspace{-4pt}]
 \titlespacing*{\section}{0pt}{5pt}{4pt}
 
 % Helpers
@@ -50,14 +50,14 @@
   \href{tel:+918619064840}{+91 86190 64840} \;|\;
   \href{mailto:krishnafauj@gmail.com}{krishnafauj@gmail.com} \;|\;
   \href{https://krishnafauj.in}{krishnafauj.in} \;|\;
-  \href{https://linkedin.com/in/krishna-faujdar-0a2204279}{LinkedIn} \;|\;
-  \href{https://github.com/krishnafauj}{GitHub}
+  \href{https://linkedin.com/in/krishna-faujdar-0a2204279}{linkedin.com/in/krishna-faujdar-0a2204279} \;|\;
+  \href{https://github.com/krishnafauj}{github.com/krishnafauj}
 \end{center}
 \vspace{-4pt}
 
 %----------------- SUMMARY -----------------
 \section{Summary}
-\small Full stack engineer at Rezolve.ai who owns features from idea to production: shaping the product, designing Django APIs and data models, building the React/Next.js interface, and shipping with RBAC, AWS SES email and integrations in place. Builds AI products with LangChain/LangGraph. Student Council President, IIIT Raichur; Luminous Hackathon runner-up (2nd of 100,000+).
+\small Full Stack Developer at Rezolve.ai building production web applications end-to-end: Django and Node.js APIs, React/Next.js interfaces and access-controlled systems on PostgreSQL, MongoDB and AWS. Builds AI applications with LangChain and LangGraph, and leads the campus as Student Council President at IIIT Raichur.
 
 %----------------- EDUCATION -----------------
 \section{Education}
@@ -88,27 +88,27 @@
 
 %----------------- PROJECTS -----------------
 \section{Projects}
-\project{AgentStudy}{Next.js, Node.js, Express, LangGraph, MongoDB, AWS S3}{\href{https://studyagent.krishnafauj.in}{Live} $\cdot$ \href{https://github.com/krishnafauj/Study_Agent}{GitHub}}
+\project{AgentStudy}{Next.js, Node.js, Express, LangGraph, MongoDB, AWS S3}{{\color{muted}Ongoing} $\cdot$ \href{https://studyagent.krishnafauj.in}{Live} $\cdot$ \href{https://github.com/krishnafauj/Study_Agent}{GitHub}}
 \begin{points}
-  \item AI study platform: a teacher assigns a PDF and each student chats with it privately, \textbf{without ever accessing the original (often confidential) document}.
-  \item Scoped access control unlocks content chapter-by-chapter or page-by-page, per student or for the whole class.
-  \item In progress: AI interview-style viva sessions where the agent questions students on the material.
+  \item Access-controlled RAG platform: teachers assign a PDF and each student chats with it privately, \textbf{never accessing the original document}.
+  \item Teachers carve PDFs into page-range sections and grant them per student; scope is derived server-side from the grant and retrieval is filtered to approved pages only.
+  \item Built a prerequisite knowledge graph so out-of-scope concepts cross only as a short definition (depth 1, no LLM call), never the restricted page.
 \end{points}
 
-\project{COSA Portal -- IIIT Raichur}{Django, PostgreSQL (Neon), AWS S3, Vercel}{\href{https://cosaiiitr.krishnafauj.in/board}{Live} $\cdot$ \href{https://github.com/krishnafauj/cosa}{GitHub}}
+\project{COSA Portal -- IIIT Raichur}{Django, PostgreSQL (Neon), AWS S3, Vercel}{{\color{muted}2026} $\cdot$ \href{https://cosaiiitr.krishnafauj.in/board}{Live} $\cdot$ \href{https://github.com/krishnafauj/cosa}{GitHub}}
 \begin{points}
   \item Jira-style grievance and issue tracker for the whole campus; Google sign-in restricted to institute emails.
   \item Kanban board (Not Started / Under Process / Blocked / Completed) with escalation and overdue filters, plus table view.
   \item Assignment to office bearers, tagged-member notifications, students joining existing issues, and a full audit history.
 \end{points}
 
-\project{SeatSwap}{Node.js, Kafka, WebSocket, MongoDB}{\href{https://seatswap.krishnafauj.in}{Live} $\cdot$ \href{https://github.com/krishnafauj/trainticketswap}{GitHub}}
+\project{SeatSwap}{Node.js, Kafka, WebSocket, MongoDB}{{\color{muted}Jul 2025} $\cdot$ \href{https://seatswap.krishnafauj.in}{Live} $\cdot$ \href{https://github.com/krishnafauj/trainticketswap}{GitHub}}
 \begin{points}
-  \item IRCTC seat-swapping platform used by tens of thousands of passengers monthly; reduced berth mismatch and cancellations.
-  \item Real-time matching with indexed MongoDB filters and Kafka-batched requests; WebSocket channel to negotiate swaps.
+  \item Deployed platform that matches train passengers holding complementary berths so they can swap seats instead of cancelling.
+  \item Event-driven matching: Kafka producers batch swap requests, indexed MongoDB queries find complementary seats, WebSockets carry live negotiation.
 \end{points}
 
-\project{Linear Optimizer (COMA)}{React Native, Expo, TypeScript}{\href{https://drive.google.com/file/d/1eD4n0h7U7JK-hQd-oGtwjvY_i8ieaOlX/view}{App} $\cdot$ \href{https://github.com/krishnafauj/coma_project}{GitHub}}
+\project{Linear Optimizer (COMA)}{React Native, Expo, TypeScript}{{\color{muted}Oct 2024} $\cdot$ \href{https://drive.google.com/file/d/1eD4n0h7U7JK-hQd-oGtwjvY_i8ieaOlX/view}{App} $\cdot$ \href{https://github.com/krishnafauj/coma_project}{GitHub}}
 \begin{points}
   \item Mobile app that solves Linear Programming problems, auto-detecting the problem type and visualising each simplex step.
 \end{points}
@@ -132,9 +132,8 @@
 %----------------- LEADERSHIP & ACHIEVEMENTS -----------------
 \section{Leadership \& Achievements}
 \begin{points}
-  \item \textbf{President, Student Council (Gymkhana), IIIT Raichur} (Sep 2026 -- Present): lead the student body and built the COSA Portal for campus grievances.
-  \item \textbf{Runner-up, Luminous Hackathon} (2nd of 100,000+): real-time solar analytics dashboards with Grafana, PostgreSQL (Neon) and React.
-  \item \textbf{Coordinator, E-Cell} (Oct 2024 -- Oct 2025): ran startup workshops and campus-wide entrepreneurship events.
+  \item \textbf{President, Student Council (Gymkhana), IIIT Raichur} (Sep 2026 -- Present): lead the student body; built the COSA Portal.
+  \item \textbf{Runner-up, Luminous Hackathon} (2nd of 100,000+): real-time solar analytics dashboards (Grafana, PostgreSQL, React).
 \end{points}
 
 \end{document}
