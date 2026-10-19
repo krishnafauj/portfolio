@@ -346,7 +346,7 @@ export const positions = [
   {
     id: 3,
     title: "President",
-    organization: "Student Council (Gymkhana), IIIT Raichur",
+    organization: "Student Council, IIIT Raichur",
     period: "Sep 2026 – Present",
     description: "Lead the student body, representing students to the administration and overseeing campus clubs, fests and student initiatives"
   },
